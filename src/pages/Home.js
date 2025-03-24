@@ -1,5 +1,7 @@
 import React from 'react';
 import '../styles/Home.scss';
+import profile from '../assets/images/about/profile.jpg';
+import { FaFacebookF, FaLinkedinIn, FaGithub, FaDownload, FaBriefcase } from 'react-icons/fa';
 
 const Home = () => {
   return (
@@ -15,10 +17,70 @@ const Home = () => {
         </div>
       </section>
 
-      <section id="about" className="section">
+      <section id="about" className="section about-section">
         <div className="container">
-          <h2>About Us</h2>
-          <p>Learn more about our company and our mission.</p>
+          <div className="section-title">
+            <h2>About Me</h2>
+            <div className="title-separator"></div>
+          </div>
+          <div className="about-content">
+            <div className="about-image-container">
+              <div className="image-border"></div>
+              <div className="image-wrapper">
+                <img src={profile} alt="Alex Smith" className="about-image" />
+                <div className="social-overlay">
+                  <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="social-icon">
+                    <FaFacebookF />
+                  </a>
+                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="social-icon">
+                    <FaLinkedinIn />
+                  </a>
+                  <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="social-icon">
+                    <FaGithub />
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div className="about-info">
+              <h3>Hello, I'm Alex Smith</h3>
+              <p className="about-description">
+                I'm a passionate web designer with over 5 years of experience in creating beautiful and functional websites. 
+                I specialize in modern, responsive design and user experience optimization.
+              </p>
+              <div className="cv-details">
+                <div className="cv-item">
+                  <span className="label">Age:</span>
+                  <span className="value">28</span>
+                </div>
+                <div className="cv-item">
+                  <span className="label">Email:</span>
+                  <span className="value">alex.smith@example.com</span>
+                </div>
+                <div className="cv-item">
+                  <span className="label">Phone:</span>
+                  <span className="value">+1 234 567 890</span>
+                </div>
+                <div className="cv-item">
+                  <span className="label">Location:</span>
+                  <span className="value">New York, USA</span>
+                </div>
+                <div className="cv-item">
+                  <span className="label">Job Title:</span>
+                  <span className="value">Senior Web Designer</span>
+                </div>
+              </div>
+              <div className="action-buttons">
+                <a href="#" className="btn btn-primary">
+                  <FaDownload className="btn-icon" />
+                  Download CV
+                </a>
+                <a href="#" className="btn btn-secondary">
+                  <FaBriefcase className="btn-icon" />
+                  Hire Me
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
