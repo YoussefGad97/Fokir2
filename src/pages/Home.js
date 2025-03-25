@@ -1,9 +1,50 @@
-import React from 'react';
-import '../styles/Home.scss';
-import profile from '../assets/images/about/profile.jpg';
-import { FaFacebookF, FaLinkedinIn, FaGithub, FaDownload, FaBriefcase, FaPalette, FaMobileAlt, FaCube, FaTools } from 'react-icons/fa';
+import React, { useState } from "react";
+import "../styles/Home.scss";
+import profile from "../assets/images/about/profile.jpg";
+import project1 from "../assets/images/portfolio/1.jpg";
+import project2 from "../assets/images/portfolio/2.jpg";
+import project3 from "../assets/images/portfolio/3.jpg";
+import project4 from "../assets/images/portfolio/4.jpg";
+import project5 from "../assets/images/portfolio/5.jpg";
+import project6 from "../assets/images/portfolio/6.jpg";
+import project7 from "../assets/images/portfolio/1.jpg";
+import project8 from "../assets/images/portfolio/2.jpg";
+import project9 from "../assets/images/portfolio/3.jpg";
+import {
+  FaFacebookF,
+  FaLinkedinIn,
+  FaGithub,
+  FaDownload,
+  FaBriefcase,
+  FaPalette,
+  FaMobileAlt,
+  FaCube,
+  FaTools,
+} from "react-icons/fa";
 
 const Home = () => {
+  const [activeFilter, setActiveFilter] = useState('all');
+
+  const handleFilter = (filter) => {
+    setActiveFilter(filter);
+  };
+
+  const portfolioItems = [
+    { id: 1, image: project1, category: 'graphic', title: 'Project Title', type: 'Graphic Design' },
+    { id: 2, image: project2, category: 'web', title: 'Project Title', type: 'Web Design' },
+    { id: 3, image: project3, category: 'branding', title: 'Project Title', type: 'Branding' },
+    { id: 4, image: project4, category: 'graphic', title: 'Project Title', type: 'Graphic Design' },
+    { id: 5, image: project5, category: 'web', title: 'Project Title', type: 'Web Design' },
+    { id: 6, image: project6, category: 'branding', title: 'Project Title', type: 'Branding' },
+    { id: 7, image: project7, category: 'graphic', title: 'Project Title', type: 'Graphic Design' },
+    { id: 8, image: project8, category: 'web', title: 'Project Title', type: 'Web Design' },
+    { id: 9, image: project9, category: 'branding', title: 'Project Title', type: 'Branding' }
+  ];
+
+  const filteredItems = activeFilter === 'all' 
+    ? portfolioItems 
+    : portfolioItems.filter(item => item.category === activeFilter);
+
   return (
     <div className="home">
       <section id="home" className="section landing-section">
@@ -29,13 +70,28 @@ const Home = () => {
               <div className="image-wrapper">
                 <img src={profile} alt="Alex Smith" className="about-image" />
                 <div className="social-overlay">
-                  <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="social-icon">
+                  <a
+                    href="https://facebook.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="social-icon"
+                  >
                     <FaFacebookF />
                   </a>
-                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="social-icon">
+                  <a
+                    href="https://linkedin.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="social-icon"
+                  >
                     <FaLinkedinIn />
                   </a>
-                  <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="social-icon">
+                  <a
+                    href="https://github.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="social-icon"
+                  >
                     <FaGithub />
                   </a>
                 </div>
@@ -44,8 +100,9 @@ const Home = () => {
             <div className="about-info">
               <h3>Hello, I'm Alex Smith</h3>
               <p className="about-description">
-                I'm a passionate web designer with over 5 years of experience in creating beautiful and functional websites. 
-                I specialize in modern, responsive design and user experience optimization.
+                I'm a passionate web designer with over 5 years of experience in
+                creating beautiful and functional websites. I specialize in
+                modern, responsive design and user experience optimization.
               </p>
               <div className="cv-details">
                 <div className="cv-item">
@@ -96,37 +153,90 @@ const Home = () => {
                 <FaPalette />
               </div>
               <h3>UI/UX Design</h3>
-              <p>Creating beautiful and intuitive user interfaces with a focus on user experience and modern design principles.</p>
+              <p>
+                Creating beautiful and intuitive user interfaces with a focus on
+                user experience and modern design principles.
+              </p>
             </div>
             <div className="service-card">
               <div className="service-icon">
                 <FaMobileAlt />
               </div>
               <h3>App Development</h3>
-              <p>Building responsive and scalable applications for web and mobile platforms using cutting-edge technologies.</p>
+              <p>
+                Building responsive and scalable applications for web and mobile
+                platforms using cutting-edge technologies.
+              </p>
             </div>
             <div className="service-card">
               <div className="service-icon">
                 <FaCube />
               </div>
               <h3>Product Design</h3>
-              <p>Designing innovative products that solve real problems and provide exceptional user experiences.</p>
+              <p>
+                Designing innovative products that solve real problems and
+                provide exceptional user experiences.
+              </p>
             </div>
             <div className="service-card">
               <div className="service-icon">
                 <FaTools />
               </div>
               <h3>Tools</h3>
-              <p>Developing custom tools and solutions to streamline workflows and enhance productivity.</p>
+              <p>
+                Developing custom tools and solutions to streamline workflows
+                and enhance productivity.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="portfolio" className="section">
+      <section id="portfolio" className="section portfolio-section">
         <div className="container">
-          <h2>Portfolio</h2>
-          <p>Check out our latest work and projects.</p>
+          <div className="section-title">
+            <h2>My Portfolio</h2>
+            <div className="title-separator"></div>
+          </div>
+          <div className="portfolio-filters">
+            <button 
+              className={`filter-btn ${activeFilter === 'all' ? 'active' : ''}`}
+              onClick={() => handleFilter('all')}
+            >
+              All
+            </button>
+            <button 
+              className={`filter-btn ${activeFilter === 'graphic' ? 'active' : ''}`}
+              onClick={() => handleFilter('graphic')}
+            >
+              Graphic
+            </button>
+            <button 
+              className={`filter-btn ${activeFilter === 'web' ? 'active' : ''}`}
+              onClick={() => handleFilter('web')}
+            >
+              Web Design
+            </button>
+            <button 
+              className={`filter-btn ${activeFilter === 'branding' ? 'active' : ''}`}
+              onClick={() => handleFilter('branding')}
+            >
+              Branding
+            </button>
+          </div>
+          <div className="portfolio-grid">
+            {filteredItems.map(item => (
+              <div key={item.id} className="portfolio-item" data-category={item.category}>
+                <div className="portfolio-image">
+                  <img src={item.image} alt={`Project ${item.id}`} />
+                  <div className="portfolio-overlay">
+                    <h3>{item.title}</h3>
+                    <p>{item.type}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
