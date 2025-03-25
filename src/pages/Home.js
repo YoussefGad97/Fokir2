@@ -15,7 +15,7 @@ import client2 from "../assets/images/testimonial/2.jpg";
 import blog1 from "../assets/images/blog/1.jpg";
 import blog2 from "../assets/images/blog/3.jpg";
 import blog3 from "../assets/images/blog/1.jpg";
-
+import emailjs from '@emailjs/browser';
 
 import {
   FaFacebookF,
@@ -32,14 +32,55 @@ import {
   FaFileDownload,
   FaCode,
   FaStar,
-  FaArrowRight
+  FaArrowRight,
+  FaMapMarkerAlt,
+  FaPhone,
+  FaEnvelope
 } from "react-icons/fa";
 
 const Home = () => {
   const [activeFilter, setActiveFilter] = useState("all");
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
 
   const handleFilter = (filter) => {
     setActiveFilter(filter);
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    try {
+      await emailjs.send(
+        'YOUR_SERVICE_ID', // Replace with your    ID
+        'YOUR_TEMPLATE_ID', // Replace with your EmailJS template ID
+        formData,
+        'YOUR_PUBLIC_KEY' // Replace with your EmailJS public key
+      );
+      setSubmitStatus('success');
+      setFormData({ name: '', email: '', phone: '', message: '' });
+    } catch (error) {
+      setSubmitStatus('error');
+      console.error('Error sending email:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const portfolioItems = [
@@ -540,10 +581,91 @@ const Home = () => {
         </div>
       </section>
 
-      <section id="contact" className="section">
+      <section id="contact" className="section contact-section">
         <div className="container">
-          <h2>Contact Us</h2>
-          <p>Get in touch with us today.</p>
+          <div className="section-title">
+            <h2>Contact Us</h2>
+            <div className="title-separator"></div>
+          </div>
+          <div className="contact-content">
+            <div className="contact-info">
+              <div className="info-item">
+                <h3>Get in Touch</h3>
+                <p>Have a question or want to work together? We'd love to hear from you!</p>
+              </div>
+              <div className="info-item">
+                <h4>Contact Information</h4>
+                <ul>
+                  <li>
+                    <FaMapMarkerAlt /> 123 Business Street, New York, USA
+                  </li>
+                  <li>
+                    <FaPhone /> +1 234 567 890
+                  </li>
+                  <li>
+                    <FaEnvelope /> contact@example.com
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <form className="contact-form" onSubmit={handleSubmit}>
+              <div className="form-group">
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  placeholder="Your Name"
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  placeholder="Your Email"
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <input
+                  type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  placeholder="Your Phone"
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  placeholder="Your Message"
+                  required
+                ></textarea>
+              </div>
+              <button 
+                type="submit" 
+                className={`submit-btn ${isSubmitting ? 'submitting' : ''}`}
+              >
+                {isSubmitting ? 'Sending...' : 'Send Message'}
+              </button>
+              {submitStatus === 'success' && (
+                <div className="success-message">
+                  Message sent successfully!
+                </div>
+              )}
+              {submitStatus === 'error' && (
+                <div className="error-message">
+                  Failed to send message. Please try again.
+                </div>
+              )}
+            </form>
+          </div>
         </div>
       </section>
     </div>
