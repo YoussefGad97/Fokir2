@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles/Home.scss';
 import profile from '../assets/images/about/profile.jpg';
-import { FaFacebookF, FaLinkedinIn, FaGithub, FaDownload, FaBriefcase } from 'react-icons/fa';
+import { FaFacebookF, FaLinkedinIn, FaGithub, FaDownload, FaBriefcase, FaPalette, FaMobileAlt, FaCube, FaTools } from 'react-icons/fa';
 
 const Home = () => {
   return (
@@ -84,10 +84,42 @@ const Home = () => {
         </div>
       </section>
 
-      <section id="services" className="section">
+      <section id="services" className="section services-section">
         <div className="container">
-          <h2>Our Services</h2>
-          <p>Discover what we can do for your business.</p>
+          <div className="section-title">
+            <h2>Our Services</h2>
+            <div className="title-separator"></div>
+          </div>
+          <div className="services-grid">
+            <div className="service-card">
+              <div className="service-icon">
+                <FaPalette />
+              </div>
+              <h3>UI/UX Design</h3>
+              <p>Creating beautiful and intuitive user interfaces with a focus on user experience and modern design principles.</p>
+            </div>
+            <div className="service-card">
+              <div className="service-icon">
+                <FaMobileAlt />
+              </div>
+              <h3>App Development</h3>
+              <p>Building responsive and scalable applications for web and mobile platforms using cutting-edge technologies.</p>
+            </div>
+            <div className="service-card">
+              <div className="service-icon">
+                <FaCube />
+              </div>
+              <h3>Product Design</h3>
+              <p>Designing innovative products that solve real problems and provide exceptional user experiences.</p>
+            </div>
+            <div className="service-card">
+              <div className="service-icon">
+                <FaTools />
+              </div>
+              <h3>Tools</h3>
+              <p>Developing custom tools and solutions to streamline workflows and enhance productivity.</p>
+            </div>
+          </div>
         </div>
       </section>
 
