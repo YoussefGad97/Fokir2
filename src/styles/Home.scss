@@ -657,3 +657,112 @@
     }
   }
 }
+
+.counter-banner {
+  padding: 80px 0;
+  background-color: #f8f9fa;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(250, 248, 249, 0.1), rgba(255, 167, 51, 0.05));
+    z-index: 1;
+  }
+
+  .container {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .counter-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    text-align: center;
+  }
+
+  .counter-item {
+    padding: 20px;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+    }
+
+    .counter-icon {
+      width: 80px;
+      height: 80px;
+      background: #ff3366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      color: #fff;
+      font-size: 2rem;
+      transition: all 0.3s ease;
+
+      svg {
+        width: 40px;
+        height: 40px;
+      }
+    }
+
+    .counter-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 10px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .counter-title {
+      font-size: 1.1rem;
+      color: #666;
+      font-weight: 500;
+    }
+
+    &:hover .counter-icon {
+      transform: rotateY(360deg);
+      background: #333;
+    }
+  }
+}
+
+// Add responsive styles for counter banner
+@media (max-width: 992px) {
+  .counter-banner {
+    .counter-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .counter-banner {
+    padding: 60px 0;
+
+    .counter-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .counter-item {
+      .counter-number {
+        font-size: 2rem;
+      }
+
+      .counter-title {
+        font-size: 1rem;
+      }
+    }
+  }
+}

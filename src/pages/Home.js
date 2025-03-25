@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../styles/Home.scss";
 import profile from "../assets/images/about/profile.jpg";
 import project1 from "../assets/images/portfolio/1.jpg";
@@ -20,6 +20,10 @@ import {
   FaMobileAlt,
   FaCube,
   FaTools,
+  FaUsers,
+  FaProjectDiagram,
+  FaFileDownload,
+  FaCode
 } from "react-icons/fa";
 
 const Home = () => {
@@ -44,6 +48,54 @@ const Home = () => {
   const filteredItems = activeFilter === 'all' 
     ? portfolioItems 
     : portfolioItems.filter(item => item.category === activeFilter);
+
+  const counterData = [
+    { icon: <FaUsers />, count: 150, title: "Team Members" },
+    { icon: <FaProjectDiagram />, count: 135, title: "Completed Projects" },
+    { icon: <FaFileDownload />, count: 50, title: "Files Downloaded" },
+    { icon: <FaCode />, count: 500, title: "Lines of Code" }
+  ];
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const counters = entry.target.querySelectorAll('.counter-number');
+          counters.forEach(counter => {
+            const target = parseInt(counter.getAttribute('data-count'));
+            let current = 0;
+            const increment = target / 100;
+            const duration = 2000; // 2 seconds
+            const stepTime = duration / 100;
+
+            const updateCounter = () => {
+              current += increment;
+              if (current < target) {
+                counter.textContent = Math.round(current);
+                setTimeout(updateCounter, stepTime);
+              } else {
+                counter.textContent = target;
+              }
+            };
+
+            updateCounter();
+          });
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    const counterSection = document.querySelector('.counter-banner');
+    if (counterSection) {
+      observer.observe(counterSection);
+    }
+
+    return () => {
+      if (counterSection) {
+        observer.unobserve(counterSection);
+      }
+    };
+  }, []);
 
   return (
     <div className="home">
@@ -233,6 +285,26 @@ const Home = () => {
                     <h3>{item.title}</h3>
                     <p>{item.type}</p>
                   </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="counter-banner">
+        <div className="container">
+          <div className="counter-grid">
+            {counterData.map((item, index) => (
+              <div key={index} className="counter-item">
+                <div className="counter-icon">
+                  {item.icon}
+                </div>
+                <div className="counter-number" data-count={item.count}>
+                  0
+                </div>
+                <div className="counter-title">
+                  {item.title}
                 </div>
               </div>
             ))}
