@@ -10,10 +10,11 @@ import project6 from "../assets/images/portfolio/6.jpg";
 import project7 from "../assets/images/portfolio/1.jpg";
 import project8 from "../assets/images/portfolio/2.jpg";
 import project9 from "../assets/images/portfolio/3.jpg";
-import client1 from "../assets/images/testimonial/2.jpg"
-import client2 from "../assets/images/testimonial/2.jpg"
-import client3 from "../assets/images/testimonial/2.jpg"
-import client4 from "../assets/images/testimonial/2.jpg"
+import client1 from "../assets/images/testimonial/2.jpg";
+import client2 from "../assets/images/testimonial/2.jpg";
+import blog1 from "../assets/images/blog/1.jpg";
+import blog2 from "../assets/images/blog/3.jpg";
+import blog3 from "../assets/images/blog/1.jpg";
 
 
 import {
@@ -31,6 +32,7 @@ import {
   FaFileDownload,
   FaCode,
   FaStar,
+  FaArrowRight
 } from "react-icons/fa";
 
 const Home = () => {
@@ -489,10 +491,52 @@ const Home = () => {
         </div>
       </section>
 
-      <section id="blog" className="section">
+      <section id="blog" className="section blog-section">
         <div className="container">
-          <h2>Blog</h2>
-          <p>Read our latest news and insights.</p>
+          <div className="section-title">
+            <h2>Our Blogs</h2>
+            <div className="title-separator"></div>
+          </div>
+          <div className="blog-grid">
+            <div className="blog-card">
+              <div className="blog-image">
+                <img src={blog1} alt="Blog 1" />
+              </div>
+              <div className="blog-content">
+                <h3>Web Design Trends in 2024</h3>
+                <p>Discover the latest trends shaping the future of web design, from AI integration to immersive experiences.</p>
+                <a href="#" className="read-more">
+                  Read More <FaArrowRight />
+                </a>
+              </div>
+            </div>
+
+            <div className="blog-card">
+              <div className="blog-image">
+                <img src={blog2} alt="Blog 2" />
+              </div>
+              <div className="blog-content">
+                <h3>UI/UX Best Practices</h3>
+                <p>Learn essential principles and practices for creating user-friendly and engaging digital experiences.</p>
+                <a href="#" className="read-more">
+                  Read More <FaArrowRight />
+                </a>
+              </div>
+            </div>
+
+            <div className="blog-card">
+              <div className="blog-image">
+                <img src={blog3} alt="Blog 3" />
+              </div>
+              <div className="blog-content">
+                <h3>Mobile-First Design</h3>
+                <p>Explore the importance of mobile-first design and how it impacts user experience across devices.</p>
+                <a href="#" className="read-more">
+                  Read More <FaArrowRight />
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
