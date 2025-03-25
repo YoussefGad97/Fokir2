@@ -35,7 +35,10 @@ import {
   FaArrowRight,
   FaMapMarkerAlt,
   FaPhone,
-  FaEnvelope
+  FaEnvelope,
+  FaTwitter,
+  FaInstagram,
+  FaYoutube
 } from "react-icons/fa";
 
 const Home = () => {
@@ -68,7 +71,7 @@ const Home = () => {
 
     try {
       await emailjs.send(
-        'YOUR_SERVICE_ID', // Replace with your    ID
+        'YOUR_SERVICE_ID', // Replace with your      ID
         'YOUR_TEMPLATE_ID', // Replace with your EmailJS template ID
         formData,
         'YOUR_PUBLIC_KEY' // Replace with your EmailJS public key
@@ -668,6 +671,84 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      <footer className="footer">
+        <div className="container">
+          <div className="footer-content">
+            <div className="footer-section">
+              <h3>About Us</h3>
+              <p>We are a creative team of designers and developers who are passionate about creating beautiful and functional websites.</p>
+              <div className="social-links">
+                <a href="#" target="_blank" rel="noopener noreferrer">
+                  <FaFacebookF />
+                </a>
+                <a href="#" target="_blank" rel="noopener noreferrer">
+                  <FaTwitter />
+                </a>
+                <a href="#" target="_blank" rel="noopener noreferrer">
+                  <FaInstagram />
+                </a>
+                <a href="#" target="_blank" rel="noopener noreferrer">
+                  <FaLinkedinIn />
+                </a>
+                <a href="#" target="_blank" rel="noopener noreferrer">
+                  <FaYoutube />
+                </a>
+              </div>
+            </div>
+
+            <div className="footer-section">
+              <h3>Quick Links</h3>
+              <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
+              </ul>
+            </div>
+
+            <div className="footer-section">
+              <h3>Services</h3>
+              <ul>
+                <li><a href="#">UI/UX Design</a></li>
+                <li><a href="#">Web Development</a></li>
+                <li><a href="#">Mobile Apps</a></li>
+                <li><a href="#">Branding</a></li>
+                <li><a href="#">Digital Marketing</a></li>
+              </ul>
+            </div>
+
+            <div className="footer-section">
+              <h3>Contact Info</h3>
+              <ul className="contact-info">
+                <li>
+                  <FaMapMarkerAlt />
+                  <span>123 Business Street, New York, USA</span>
+                </li>
+                <li>
+                  <FaPhone />
+                  <span>+1 234 567 890</span>
+                </li>
+                <li>
+                  <FaEnvelope />
+                  <span>contact@example.com</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="footer-bottom">
+            <p>&copy; {new Date().getFullYear()} Your Company. All rights reserved.</p>
+            <div className="footer-bottom-links">
+              <a href="#">Privacy Policy</a>
+              <a href="#">Terms of Service</a>
+              <a href="#">Cookie Policy</a>
+            </div>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
