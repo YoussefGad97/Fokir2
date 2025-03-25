@@ -10,6 +10,12 @@ import project6 from "../assets/images/portfolio/6.jpg";
 import project7 from "../assets/images/portfolio/1.jpg";
 import project8 from "../assets/images/portfolio/2.jpg";
 import project9 from "../assets/images/portfolio/3.jpg";
+import client1 from "../assets/images/testimonial/2.jpg"
+import client2 from "../assets/images/testimonial/2.jpg"
+import client3 from "../assets/images/testimonial/2.jpg"
+import client4 from "../assets/images/testimonial/2.jpg"
+
+
 import {
   FaFacebookF,
   FaLinkedinIn,
@@ -23,69 +29,128 @@ import {
   FaUsers,
   FaProjectDiagram,
   FaFileDownload,
-  FaCode
+  FaCode,
+  FaStar,
 } from "react-icons/fa";
 
 const Home = () => {
-  const [activeFilter, setActiveFilter] = useState('all');
+  const [activeFilter, setActiveFilter] = useState("all");
 
   const handleFilter = (filter) => {
     setActiveFilter(filter);
   };
 
   const portfolioItems = [
-    { id: 1, image: project1, category: 'graphic', title: 'Project Title', type: 'Graphic Design' },
-    { id: 2, image: project2, category: 'web', title: 'Project Title', type: 'Web Design' },
-    { id: 3, image: project3, category: 'branding', title: 'Project Title', type: 'Branding' },
-    { id: 4, image: project4, category: 'graphic', title: 'Project Title', type: 'Graphic Design' },
-    { id: 5, image: project5, category: 'web', title: 'Project Title', type: 'Web Design' },
-    { id: 6, image: project6, category: 'branding', title: 'Project Title', type: 'Branding' },
-    { id: 7, image: project7, category: 'graphic', title: 'Project Title', type: 'Graphic Design' },
-    { id: 8, image: project8, category: 'web', title: 'Project Title', type: 'Web Design' },
-    { id: 9, image: project9, category: 'branding', title: 'Project Title', type: 'Branding' }
+    {
+      id: 1,
+      image: project1,
+      category: "graphic",
+      title: "Project Title",
+      type: "Graphic Design",
+    },
+    {
+      id: 2,
+      image: project2,
+      category: "web",
+      title: "Project Title",
+      type: "Web Design",
+    },
+    {
+      id: 3,
+      image: project3,
+      category: "branding",
+      title: "Project Title",
+      type: "Branding",
+    },
+    {
+      id: 4,
+      image: project4,
+      category: "graphic",
+      title: "Project Title",
+      type: "Graphic Design",
+    },
+    {
+      id: 5,
+      image: project5,
+      category: "web",
+      title: "Project Title",
+      type: "Web Design",
+    },
+    {
+      id: 6,
+      image: project6,
+      category: "branding",
+      title: "Project Title",
+      type: "Branding",
+    },
+    {
+      id: 7,
+      image: project7,
+      category: "graphic",
+      title: "Project Title",
+      type: "Graphic Design",
+    },
+    {
+      id: 8,
+      image: project8,
+      category: "web",
+      title: "Project Title",
+      type: "Web Design",
+    },
+    {
+      id: 9,
+      image: project9,
+      category: "branding",
+      title: "Project Title",
+      type: "Branding",
+    },
   ];
 
-  const filteredItems = activeFilter === 'all' 
-    ? portfolioItems 
-    : portfolioItems.filter(item => item.category === activeFilter);
+  const filteredItems =
+    activeFilter === "all"
+      ? portfolioItems
+      : portfolioItems.filter((item) => item.category === activeFilter);
 
   const counterData = [
     { icon: <FaUsers />, count: 150, title: "Team Members" },
     { icon: <FaProjectDiagram />, count: 135, title: "Completed Projects" },
     { icon: <FaFileDownload />, count: 50, title: "Files Downloaded" },
-    { icon: <FaCode />, count: 500, title: "Lines of Code" }
+    { icon: <FaCode />, count: 500, title: "Lines of Code" },
   ];
 
   useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const counters = entry.target.querySelectorAll('.counter-number');
-          counters.forEach(counter => {
-            const target = parseInt(counter.getAttribute('data-count'));
-            let current = 0;
-            const increment = target / 100;
-            const duration = 2000; // 2 seconds
-            const stepTime = duration / 100;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const counters = entry.target.querySelectorAll(".counter-number");
+            counters.forEach((counter) => {
+              const target = parseInt(counter.getAttribute("data-count"));
+              let current = 0;
+              const increment = target / 100;
+              const duration = 2000; // 2 seconds
+              const stepTime = duration / 100;
 
-            const updateCounter = () => {
-              current += increment;
-              if (current < target) {
-                counter.textContent = Math.round(current);
-                setTimeout(updateCounter, stepTime);
-              } else {
-                counter.textContent = target;
-              }
-            };
+              const updateCounter = () => {
+                current += increment;
+                if (current < target) {
+                  counter.textContent = Math.round(current);
+                  setTimeout(updateCounter, stepTime);
+                } else {
+                  counter.textContent = target;
+                }
+              };
 
-            updateCounter();
-          });
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.5 });
+              updateCounter();
+            });
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
 
-    const counterSection = document.querySelector('.counter-banner');
+    const counterSection = document.querySelector(".counter-banner");
     if (counterSection) {
       observer.observe(counterSection);
     }
@@ -251,34 +316,42 @@ const Home = () => {
             <div className="title-separator"></div>
           </div>
           <div className="portfolio-filters">
-            <button 
-              className={`filter-btn ${activeFilter === 'all' ? 'active' : ''}`}
-              onClick={() => handleFilter('all')}
+            <button
+              className={`filter-btn ${activeFilter === "all" ? "active" : ""}`}
+              onClick={() => handleFilter("all")}
             >
               All
             </button>
-            <button 
-              className={`filter-btn ${activeFilter === 'graphic' ? 'active' : ''}`}
-              onClick={() => handleFilter('graphic')}
+            <button
+              className={`filter-btn ${
+                activeFilter === "graphic" ? "active" : ""
+              }`}
+              onClick={() => handleFilter("graphic")}
             >
               Graphic
             </button>
-            <button 
-              className={`filter-btn ${activeFilter === 'web' ? 'active' : ''}`}
-              onClick={() => handleFilter('web')}
+            <button
+              className={`filter-btn ${activeFilter === "web" ? "active" : ""}`}
+              onClick={() => handleFilter("web")}
             >
               Web Design
             </button>
-            <button 
-              className={`filter-btn ${activeFilter === 'branding' ? 'active' : ''}`}
-              onClick={() => handleFilter('branding')}
+            <button
+              className={`filter-btn ${
+                activeFilter === "branding" ? "active" : ""
+              }`}
+              onClick={() => handleFilter("branding")}
             >
               Branding
             </button>
           </div>
           <div className="portfolio-grid">
-            {filteredItems.map(item => (
-              <div key={item.id} className="portfolio-item" data-category={item.category}>
+            {filteredItems.map((item) => (
+              <div
+                key={item.id}
+                className="portfolio-item"
+                data-category={item.category}
+              >
                 <div className="portfolio-image">
                   <img src={item.image} alt={`Project ${item.id}`} />
                   <div className="portfolio-overlay">
@@ -297,25 +370,122 @@ const Home = () => {
           <div className="counter-grid">
             {counterData.map((item, index) => (
               <div key={index} className="counter-item">
-                <div className="counter-icon">
-                  {item.icon}
-                </div>
+                <div className="counter-icon">{item.icon}</div>
                 <div className="counter-number" data-count={item.count}>
                   0
                 </div>
-                <div className="counter-title">
-                  {item.title}
-                </div>
+                <div className="counter-title">{item.title}</div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="testimonial" className="section">
+      <section id="testimonial" className="section testimonial-section">
         <div className="container">
-          <h2>Testimonials</h2>
-          <p>What our clients say about us.</p>
+          <div className="section-title">
+            <h2>Client Feedback</h2>
+            <div className="title-separator"></div>
+          </div>
+          <div className="testimonial-carousel">
+            <div className="testimonial-track">
+              <div className="testimonial-card">
+                <div className="testimonial-image">
+                  <img src={client1} alt="Client 1" />
+                </div>
+                <div className="testimonial-content">
+                  <div className="testimonial-rating">
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                  </div>
+                  <p className="testimonial-text">
+                    "Working with this team was an absolute pleasure. They
+                    delivered beyond our expectations and created a stunning
+                    website that perfectly represents our brand."
+                  </p>
+                  <div className="testimonial-author">
+                    <h4>John Smith</h4>
+                    <span>New York, USA</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="testimonial-card">
+                <div className="testimonial-image">
+                  <img src={client2} alt="Client 2" />
+                </div>
+                <div className="testimonial-content">
+                  <div className="testimonial-rating">
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                  </div>
+                  <p className="testimonial-text">
+                    "The attention to detail and professional approach made all
+                    the difference. They transformed our vision into reality
+                    with exceptional results."
+                  </p>
+                  <div className="testimonial-author">
+                    <h4>Sarah Johnson</h4>
+                    <span>London, UK</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="testimonial-card">
+                <div className="testimonial-image">
+                  <img src={client1} alt="Client 3" />
+                </div>
+                <div className="testimonial-content">
+                  <div className="testimonial-rating">
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                  </div>
+                  <p className="testimonial-text">
+                    "Outstanding service and incredible results! They went above
+                    and beyond to ensure our project was perfect. Highly
+                    recommended!"
+                  </p>
+                  <div className="testimonial-author">
+                    <h4>Michael Chen</h4>
+                    <span>Singapore</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="testimonial-card">
+                <div className="testimonial-image">
+                  <img src={client1} alt="Client 4" />
+                </div>
+                <div className="testimonial-content">
+                  <div className="testimonial-rating">
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                    <FaStar />
+                  </div>
+                  <p className="testimonial-text">
+                    "Their expertise in web design and development is unmatched.
+                    They created a beautiful, responsive website that drives
+                    results."
+                  </p>
+                  <div className="testimonial-author">
+                    <h4>Emma Davis</h4>
+                    <span>Melbourne, Australia</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
